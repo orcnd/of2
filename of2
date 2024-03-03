@@ -1,0 +1,107 @@
+<?php 
+
+/**
+ * Creates a response
+ *
+ * @param string  $data text to show
+ * @param boolean $kill exit or not
+ * 
+ * @return void
+ */
+function response(string $data,bool $kill=true)
+{
+    if (is_string($data) || is_numeric($data)) {
+        echo  $data;
+    } else {
+        var_dump($data);
+    }
+    echo PHP_EOL;
+    if ($kill) {
+        exit;
+    }
+}
+
+/**
+ * Creates seo friendly text
+ *
+ * @param string  $text  text to convert
+ * @param integer $limit max length
+ * 
+ * @return string
+ */
+function makeSeo(string $text,int $limit=75) :string 
+{
+    // replace non letter or digits by -
+    $text = preg_replace('~[^\\pL\d]+~u', '-', $text);
+
+    // trim
+    $text = trim($text, '-');
+
+    // lowercase
+    $text = strtolower($text);
+
+    // remove unwanted characters
+    $text = preg_replace('~[^-\w]+~', '', $text);
+
+    $text = str_replace('-', '_', $text);
+
+    if (strlen($text) > 70) {
+        $text = substr($text, 0, 70);
+    } 
+
+    if (empty($text)) {
+        //return 'n-a';
+        return (string)time();
+    }
+
+    return $text;
+}
+
+if (count($argv)<2) {
+    response("where is command ?");
+}
+
+$command=$argv[1];
+$params=[];
+if (count($argv)>2) {
+    $params=array_splice($argv, 2);
+}
+$appBaseDir='';
+
+if ($command=="make:model" && count($params)>0 ) {
+    $name=$params[0];
+    $fileName=$appBaseDir . 'src/Models/' .$name . '.php';
+    if (file_exists($fileName)) {
+        response("model file `" . $fileName . '` is already exists');
+    }
+
+    $objectName=$name;
+    $namespaceBase=['Src','Models'];
+    $namespace=[];
+
+    if (strpos($objectName, '/')>-1) {
+        $objectName=explode('/', $objectName);
+        $namespace=$objectName;
+        unset($objectName[count($objectName)-1]);
+        $objectName=end($objectName);
+    }
+
+    $namespace=array_merge($namespaceBase, $namespace);
+    $namespace=implode('\\', $namespace);
+
+    $base='<?php
+
+  namespace '.$namespace .';
+  
+  class ' . $objectName . ' extends \Src\Core\BaseModel
+  {
+
+  }';
+    file_put_contents($fileName, $base);
+    echo "model created : " . $fileName;
+}
+
+
+if ($command=="serve") {
+    exec("php -S localhost:1234 -t public_html/");
+}

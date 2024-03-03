@@ -1,0 +1,40 @@
+{
+    "name": "orcnd/of2",
+    "description": "Micro Mvc Framework",
+    "type": "project",
+    "license": "M.I.T.",
+    "autoload": {
+        "psr-4": {
+            "pbClub360\\" : "src/"
+        },
+        "files" : [
+            "src/Routes/web.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4" : {
+            "Src\\" : "src/"
+        },
+        "files" : [
+            "src/Routes/web.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "orçun candan",
+            "email": "orcuncandan89@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require-dev": {
+        "sempro/phpunit-pretty-print": "^1.2",
+        "robiningelbrecht/phpunit-pretty-print": "dev-master"
+    },
+    "require": {
+        "illuminate/database": "^10.46",
+        "jenssegers/blade": "^2.0",
+        "josegonzalez/dotenv": "^4.0",
+        "phpunit/phpunit": "^10.5",
+        "larapack/dd": "1.*"
+    }
+}
