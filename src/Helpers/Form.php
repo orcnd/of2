@@ -29,20 +29,13 @@ class Form
 
     /**
      * Creates Csrf input form element
-     *
-     * @param boolean $print flag for printing directly 
      * 
-     * @return string hidden form element that contains csrf token in _token name
+     * @return string hidden form element that contains csrf token in token name
      */
-    public static function csrfInput($print=true):string 
+    public static function csrfInput():string 
     {
         $token=\Src\Helpers\Http::csrf();
         $html= '<input type="hidden" name="_token" value="' . $token . '">';
-        
-        if ($print) {
-            echo $html;
-        }
-
         return $html;
     }
 }
