@@ -67,7 +67,7 @@ class Router
     private static function _findRoute(string $route, string $method):false|array
     {
         $params = [];
-        $neededObject = array_filter(
+        $foundRoute = array_filter(
             self::$_routes,
             function ($theRoute) use (&$route,&$method,&$params) {
                 //kudos to https://stackoverflow.com/questions/11722711/url-routing-regex-php/11723153#11723153
@@ -91,11 +91,11 @@ class Router
 
             }
         );
-        $neededObject=end($neededObject);
-        if ($neededObject) {
-            $neededObject['params']=$params;
+        $foundRoute=end($foundRoute);
+        if ($foundRoute) {
+            $foundRoute['params']=$params;
         }
-        return $neededObject;
+        return $foundRoute;
     }
 
     /**
@@ -145,45 +145,6 @@ class Router
         return false; 
     }
 
-    
-    /**
-     * Getting route's callback
-     *
-     * @param string $route  Route uri
-     * @param string $method HTTP Method
-     * 
-     * @return boolean|callable
-     */
-    public static function get(string $route, string $method) : bool|callable
-    {
-        $route = trim($route);
-        $method = strtoupper(trim($method));
-        foreach (self::$_routes as $theRoute) {
-
-            //kudos to https://stackoverflow.com/questions/11722711/url-routing-regex-php/11723153#11723153
-            // convert urls like '/users/:uid/posts/:pid' to regular expression
-            $pattern = "@^" . preg_replace(
-                '/\\\:[a-zA-Z0-9\_\-]+/', 
-                '([a-zA-Z0-9\-\_]+)', preg_quote($route['url'])
-            ) . "$@D";
-            $matches = [];
-            // check if the current request matches the expression
-            if ($method == $route['method'] 
-                && preg_match($pattern, $route, $matches)
-            ) {
-                // remove the first match
-                array_shift($matches);
-                // call the callback with the matched positions as params
-                return call_user_func_array($route['callback'], $matches);
-            }
-
-            if ($theRoute['route'] == $route 
-                && $theRoute['method'] == $method
-            ) {
-                return $theRoute['callback'];
-            }
-        }
-        return false;
-    }
+   
 
 }
