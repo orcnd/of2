@@ -14,7 +14,7 @@ use Src\Core\Router;
 
 Router::set(
     '/', 'GET', function () {
-        echo 'Hello World';
+        echo view('home');
     }
 );
 
