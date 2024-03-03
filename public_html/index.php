@@ -10,6 +10,4 @@
  * @link     https://github.com/orcnd
  */
 require __DIR__.'/../vendor/autoload.php';
-//new \Src\Core\Base();
-
-new \Src\Core\BaseModel();
+new \Src\Core\Base();
