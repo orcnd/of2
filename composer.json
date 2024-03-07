@@ -8,7 +8,6 @@
             "pbClub360\\" : "src/"
         },
         "files" : [
-            "src/Routes/web.php",
             "src/Helpers/Common.php"
         ]
     },
