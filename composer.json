@@ -2,7 +2,7 @@
     "name": "orcnd/of2",
     "description": "Micro Mvc Framework",
     "type": "library",
-    "license": "M.I.T.",
+    "license": "GPL-3.0-or-later",
     "autoload": {
         "psr-4": {
             "pbClub360\\" : "src/"
@@ -33,6 +33,7 @@
         "robiningelbrecht/phpunit-pretty-print": "dev-master"
     },
     "require": {
+        "php": ">=8.1",
         "illuminate/database": "^10.46",
         "jenssegers/blade": "^2.0",
         "josegonzalez/dotenv": "^4.0",
