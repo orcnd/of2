@@ -5,7 +5,7 @@
     "license": "GPL-3.0-or-later",
     "autoload": {
         "psr-4": {
-            "pbClub360\\" : "src/"
+            "orcnd\\of2\\" : "src/"
         },
         "files" : [
             "src/Helpers/Common.php"
@@ -13,7 +13,7 @@
     },
     "autoload-dev": {
         "psr-4" : {
-            "Src\\" : "src/"
+            "orcnd\\of2\\" : "src/"
         },
         "files" : [
             "src/Helpers/Common.php"
