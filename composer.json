@@ -2,18 +2,10 @@
     "name": "orcnd/of2",
     "description": "Micro Mvc Framework",
     "type": "library",
-    "license": "GPL-3.0-or-later",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
-            "orcnd\\of2\\" : "src/"
-        },
-        "files" : [
-            "src/Helpers/Common.php"
-        ]
-    },
-    "autoload-dev": {
-        "psr-4" : {
-            "orcnd\\of2\\" : "src/"
+            "orcnd\\Of2\\" : "src/"
         },
         "files" : [
             "src/Helpers/Common.php"
