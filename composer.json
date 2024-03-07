@@ -1,7 +1,7 @@
 {
     "name": "orcnd/of2",
     "description": "Micro Mvc Framework",
-    "type": "project",
+    "type": "package",
     "license": "M.I.T.",
     "autoload": {
         "psr-4": {
